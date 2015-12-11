@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ThreadListActivity"
+            android:name=".view.ThreadListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,13 +19,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ThreadDetailActivity"
+            android:name=".view.ThreadDetailActivity"
             android:label="@string/title_thread_detail"
-            android:parentActivityName=".ThreadListActivity"
+            android:parentActivityName=".view.ThreadListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.hosain.android.redditlive.ThreadListActivity"/>
+                android:value=".view.ThreadListActivity"/>
         </activity>
     </application>
 

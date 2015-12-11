@@ -1,11 +1,10 @@
-package net.hosain.android.redditlive;
+package net.hosain.android.redditlive.view;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+import net.hosain.android.redditlive.R;
 import net.hosain.android.redditlive.dummy.DummyContent;
 
 import java.util.List;
