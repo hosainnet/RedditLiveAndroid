@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RedditLive</string>
+    <string name="title_thread_detail">Thread Detail</string>
+</resources>
