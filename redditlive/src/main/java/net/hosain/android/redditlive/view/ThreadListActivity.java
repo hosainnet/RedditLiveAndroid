@@ -7,7 +7,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import net.hosain.android.redditlive.R;
@@ -20,16 +19,23 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class ThreadListActivity extends AppCompatActivity {
 
     @Inject
     IndexActivityController indexActivityController;
+
+    @Bind(R.id.thread_list)
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thread_list);
         InjectHelper.getRootComponent().inject(this);
+        ButterKnife.bind(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -44,19 +50,11 @@ public class ThreadListActivity extends AppCompatActivity {
             }
         });
 
-        View recyclerView = findViewById(R.id.thread_list);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
-
         indexActivityController.requestThreads(this);
 
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new ThreadListAdapter(DummyContent.ITEMS));
-    }
-
     public void onThreadsReceived(List<Thread> threads) {
-        Log.i("ThreadListActivity", "onThreadsReceived: " + threads.size());
+        recyclerView.setAdapter(new ThreadListAdapter(DummyContent.ITEMS));
     }
 }
