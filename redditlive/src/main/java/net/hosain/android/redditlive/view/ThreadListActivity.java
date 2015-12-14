@@ -11,21 +11,27 @@ import android.util.Log;
 import android.view.View;
 
 import net.hosain.android.redditlive.R;
+import net.hosain.android.redditlive.di.InjectHelper;
 import net.hosain.android.redditlive.dummy.DummyContent;
 import net.hosain.android.redditlive.model.ThreadList;
 import net.hosain.android.redditlive.service.ApiService;
 
+import javax.inject.Inject;
+
 import retrofit.Callback;
-import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
 public class ThreadListActivity extends AppCompatActivity {
 
+    @Inject
+    ApiService apiService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thread_list);
+        InjectHelper.getRootComponent().inject(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -44,12 +50,6 @@ public class ThreadListActivity extends AppCompatActivity {
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
 
-        Retrofit.Builder retorfitBuilder = new Retrofit.Builder();
-        final Retrofit retrofit = retorfitBuilder.baseUrl("http://redditlive.hosain.net")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        final ApiService apiService = retrofit.create(ApiService.class);
         apiService.listThreads().enqueue(new Callback<ThreadList>() {
             @Override
             public void onResponse(Response<ThreadList> response, Retrofit retrofit) {
