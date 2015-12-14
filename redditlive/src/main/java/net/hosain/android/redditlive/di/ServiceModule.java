@@ -1,6 +1,7 @@
 package net.hosain.android.redditlive.di;
 
 import net.hosain.android.redditlive.service.ApiService;
+import net.hosain.android.redditlive.service.DataService;
 
 import javax.inject.Singleton;
 
@@ -23,5 +24,11 @@ public class ServiceModule {
                 .build();
 
         return retrofit.create(ApiService.class);
+    }
+
+    @Provides
+    @Singleton
+    public DataService providesDataService() {
+        return new DataService();
     }
 }
