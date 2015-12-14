@@ -7,10 +7,18 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import net.hosain.android.redditlive.R;
 import net.hosain.android.redditlive.dummy.DummyContent;
+import net.hosain.android.redditlive.model.ThreadList;
+import net.hosain.android.redditlive.service.ApiService;
+
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class ThreadListActivity extends AppCompatActivity {
 
@@ -35,6 +43,24 @@ public class ThreadListActivity extends AppCompatActivity {
         View recyclerView = findViewById(R.id.thread_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
+
+        Retrofit.Builder retorfitBuilder = new Retrofit.Builder();
+        final Retrofit retrofit = retorfitBuilder.baseUrl("http://redditlive.hosain.net")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        final ApiService apiService = retrofit.create(ApiService.class);
+        apiService.listThreads().enqueue(new Callback<ThreadList>() {
+            @Override
+            public void onResponse(Response<ThreadList> response, Retrofit retrofit) {
+                Log.i("test", "onResponse: " + response.body().getThreadList().getChildren().size());
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
 
     }
 
