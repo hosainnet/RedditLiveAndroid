@@ -7,21 +7,21 @@ public class ThreadList {
     @SerializedName("kind")
     private String kind;
     @SerializedName("data")
-    private Thread threadList;
+    private ThreadListData threadListData;
 
     public void setKind(String kind) {
         this.kind = kind;
     }
 
-    public void setThreadList(Thread threadList) {
-        this.threadList = threadList;
+    public void setThreadListData(ThreadListData threadListData) {
+        this.threadListData = threadListData;
     }
 
     public String getKind() {
         return kind;
     }
 
-    public Thread getThreadList() {
-        return threadList;
+    public ThreadListData getThreadListData() {
+        return threadListData;
     }
 }

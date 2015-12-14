@@ -11,21 +11,19 @@ import android.util.Log;
 import android.view.View;
 
 import net.hosain.android.redditlive.R;
+import net.hosain.android.redditlive.controller.IndexActivityController;
 import net.hosain.android.redditlive.di.InjectHelper;
 import net.hosain.android.redditlive.dummy.DummyContent;
-import net.hosain.android.redditlive.model.ThreadList;
-import net.hosain.android.redditlive.service.ApiService;
+import net.hosain.android.redditlive.model.Thread;
+
+import java.util.List;
 
 import javax.inject.Inject;
-
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
 
 public class ThreadListActivity extends AppCompatActivity {
 
     @Inject
-    ApiService apiService;
+    IndexActivityController indexActivityController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,17 +48,7 @@ public class ThreadListActivity extends AppCompatActivity {
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
 
-        apiService.listThreads().enqueue(new Callback<ThreadList>() {
-            @Override
-            public void onResponse(Response<ThreadList> response, Retrofit retrofit) {
-                Log.i("test", "onResponse: " + response.body().getThreadList().getChildren().size());
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-
-            }
-        });
+        indexActivityController.requestThreads(this);
 
     }
 
@@ -68,4 +56,7 @@ public class ThreadListActivity extends AppCompatActivity {
         recyclerView.setAdapter(new ThreadListAdapter(DummyContent.ITEMS));
     }
 
+    public void onThreadsReceived(List<Thread> threads) {
+        Log.i("ThreadListActivity", "onThreadsReceived: " + threads.size());
+    }
 }

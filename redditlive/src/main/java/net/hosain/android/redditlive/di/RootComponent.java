@@ -8,6 +8,7 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
+        ControllerModule.class,
         ServiceModule.class,
 })
 public interface RootComponent {
