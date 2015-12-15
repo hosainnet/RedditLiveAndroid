@@ -13,8 +13,7 @@ import net.hosain.android.redditlive.model.Thread;
 
 import java.util.List;
 
-public class ThreadListAdapter
-        extends RecyclerView.Adapter<ThreadListAdapter.ViewHolder> {
+public class ThreadListAdapter extends RecyclerView.Adapter<ThreadListAdapter.ViewHolder> {
 
     private final List<Thread> threads;
 

@@ -15,11 +15,11 @@ import net.hosain.android.redditlive.controller.ThreadDetailFragmentController;
 import net.hosain.android.redditlive.di.InjectHelper;
 import net.hosain.android.redditlive.model.Thread;
 import net.hosain.android.redditlive.model.ThreadPostList;
-import net.hosain.android.redditlive.service.DataService;
 
 import javax.inject.Inject;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class ThreadDetailFragment extends Fragment {
 
@@ -30,8 +30,8 @@ public class ThreadDetailFragment extends Fragment {
     @Inject
     ThreadDetailFragmentController threadDetailFragmentController;
 
-    @Bind(R.id.thread_posts_list)
-    RecyclerView threadPostsList;
+    @Bind(R.id.live_updates_list)
+    RecyclerView liveUpdateList;
 
     public ThreadDetailFragment() {
     }
@@ -55,6 +55,7 @@ public class ThreadDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.thread_detail, container, false);
+        ButterKnife.bind(this, rootView);
 
         threadDetailFragmentController.requestThreadPosts(thread, this);
 
@@ -62,8 +63,10 @@ public class ThreadDetailFragment extends Fragment {
     }
 
     public void onThreadPostsReceived(ThreadPostList posts) {
-        for (ThreadPostList.TheadPostData.ThreadPost post : posts.getThreadPostData().getChildren()) {
+        for (ThreadPostList.TheadPostData.LiveUpdate post : posts.getThreadPostData().getLiveUpdates()) {
             Log.i("ThreadDetailFragment", "onThreadPostsReceived: " + post.getData().getBody());
         }
+
+        liveUpdateList.setAdapter(new LiveUpdateListAdapter(posts.getThreadPostData().getLiveUpdates()));
     }
 }

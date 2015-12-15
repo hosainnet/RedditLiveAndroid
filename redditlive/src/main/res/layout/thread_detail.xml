@@ -1,5 +1,5 @@
 <android.support.v7.widget.RecyclerView
-    android:id="@+id/thread_posts_list"
+    android:id="@+id/live_updates_list"
     android:name="net.hosain.android.redditlive.ThreadListFragment"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,4 +10,4 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".view.ThreadDetailActivity"
-    tools:listitem="@layout/thread_post_content"/>
+    tools:listitem="@layout/live_update_content"/>

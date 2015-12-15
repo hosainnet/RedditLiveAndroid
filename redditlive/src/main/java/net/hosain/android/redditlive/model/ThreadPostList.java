@@ -37,7 +37,7 @@ public class ThreadPostList {
         private Object before;
 
         @SerializedName("children")
-        private List<ThreadPost> children;
+        private List<LiveUpdate> liveUpdates;
 
         public void setModhash(String modhash) {
             this.modhash = modhash;
@@ -51,8 +51,8 @@ public class ThreadPostList {
             this.before = before;
         }
 
-        public void setChildren(List<ThreadPost> children) {
-            this.children = children;
+        public void setLiveUpdates(List<LiveUpdate> liveUpdates) {
+            this.liveUpdates = liveUpdates;
         }
 
         public String getModhash() {
@@ -67,11 +67,11 @@ public class ThreadPostList {
             return before;
         }
 
-        public List<ThreadPost> getChildren() {
-            return children;
+        public List<LiveUpdate> getLiveUpdates() {
+            return liveUpdates;
         }
 
-        public static class ThreadPost {
+        public static class LiveUpdate {
             @SerializedName("kind")
             private String kind;
 
