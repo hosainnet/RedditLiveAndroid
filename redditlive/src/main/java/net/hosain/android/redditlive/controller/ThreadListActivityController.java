@@ -12,12 +12,12 @@ import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class IndexActivityController {
+public class ThreadListActivityController {
 
     private ApiService apiService;
     private DataService dataService;
 
-    public IndexActivityController(ApiService apiService, DataService dataService) {
+    public ThreadListActivityController(ApiService apiService, DataService dataService) {
         this.apiService = apiService;
         this.dataService = dataService;
     }

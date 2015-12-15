@@ -1,15 +1,12 @@
 package net.hosain.android.redditlive.view;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import net.hosain.android.redditlive.R;
-import net.hosain.android.redditlive.controller.IndexActivityController;
+import net.hosain.android.redditlive.controller.ThreadListActivityController;
 import net.hosain.android.redditlive.di.InjectHelper;
 import net.hosain.android.redditlive.model.Thread;
 
@@ -23,7 +20,7 @@ import butterknife.ButterKnife;
 public class ThreadListActivity extends AppCompatActivity {
 
     @Inject
-    IndexActivityController indexActivityController;
+    ThreadListActivityController threadListActivityController;
 
     @Bind(R.id.thread_list)
     RecyclerView recyclerView;
@@ -39,7 +36,7 @@ public class ThreadListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        indexActivityController.requestThreads(this);
+        threadListActivityController.requestThreads(this);
 
     }
 
