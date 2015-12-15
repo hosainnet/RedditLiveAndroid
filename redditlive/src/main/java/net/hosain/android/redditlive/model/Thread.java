@@ -37,7 +37,7 @@ public class Thread {
         return threadData;
     }
 
-    private static class ThreadData {
+    public static class ThreadData {
         @SerializedName("domain")
         private String domain;
         @SerializedName("banned_by")

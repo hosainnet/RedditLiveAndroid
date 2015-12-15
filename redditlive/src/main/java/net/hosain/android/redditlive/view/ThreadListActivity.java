@@ -1,7 +1,6 @@
 package net.hosain.android.redditlive.view;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,6 @@ import android.view.View;
 import net.hosain.android.redditlive.R;
 import net.hosain.android.redditlive.controller.IndexActivityController;
 import net.hosain.android.redditlive.di.InjectHelper;
-import net.hosain.android.redditlive.dummy.DummyContent;
 import net.hosain.android.redditlive.model.Thread;
 
 import java.util.List;
@@ -55,6 +53,6 @@ public class ThreadListActivity extends AppCompatActivity {
     }
 
     public void onThreadsReceived(List<Thread> threads) {
-        recyclerView.setAdapter(new ThreadListAdapter(DummyContent.ITEMS));
+        recyclerView.setAdapter(new ThreadListAdapter(threads));
     }
 }
