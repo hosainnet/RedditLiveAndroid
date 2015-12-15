@@ -25,7 +25,7 @@ public class DataService {
         THREADS_MAP.put(thread.getId(), thread);
     }
 
-    public Thread getThreadtWithId(int id) {
+    public Thread getThreadWithId(String id) {
         return THREADS_MAP.get(id);
     }
 }
