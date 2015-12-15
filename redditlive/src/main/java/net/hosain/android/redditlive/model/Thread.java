@@ -626,7 +626,7 @@ public class Thread {
             }
         }
 
-        private static class SecureMediaEntity {
+        public static class SecureMediaEntity {
             @SerializedName("event_id")
             private String eventId;
             @SerializedName("type")
